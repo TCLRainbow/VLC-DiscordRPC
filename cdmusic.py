@@ -24,9 +24,10 @@ mediaTrack_pp = ctypes.POINTER(vlc.MediaTrack)()
 n = vlc.libvlc_media_tracks_get(media, ctypes.byref(mediaTrack_pp))
 info = ctypes.cast(mediaTrack_pp, ctypes.POINTER(ctypes.POINTER(vlc.MediaTrack) * n))
 track = info.contents[0].contents
-print(track)
+audio = ctypes.cast(track.u.audio, ctypes.POINTER(vlc.AudioTrack))
+sample = audio.contents.rate
 
-details = f"{int(track.bitrate / 1000)}kbps"
+details = f"{int(track.bitrate / 1000)}kbps {sample}Hz"
 if length > 0:
     while True:
         snap = time.time()
