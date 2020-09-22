@@ -23,15 +23,15 @@ media = mplayer.get_media()
 mediaTrack_pp = ctypes.POINTER(vlc.MediaTrack)()
 n = vlc.libvlc_media_tracks_get(media, ctypes.byref(mediaTrack_pp))
 info = ctypes.cast(mediaTrack_pp, ctypes.POINTER(ctypes.POINTER(vlc.MediaTrack) * n))
-track = info.contents[0].contents
-audio = ctypes.cast(track.u.audio, ctypes.POINTER(vlc.AudioTrack))
+media_track = info.contents[0].contents
+audio = ctypes.cast(media_track.u.audio, ctypes.POINTER(vlc.AudioTrack))
 sample = audio.contents.rate
 
-details = f"{int(track.bitrate / 1000)}kbps {sample}Hz"
+details = f"{int(media_track.bitrate / 1000)}kbps {sample}Hz"
 if length > 0:
     while True:
         snap = time.time()
-        RPC.update(state=details, details=file_name, large_image=extension, party_id='ae488379-351d-4a4f-ad32-2b9b01c91657',
+        RPC.update(state=details, details=file_name, large_image=extension, party_id='xq', party_size=[1, 2**32],
                    large_text=extension, join='MTI4NzM0OjFpMmhuZToxMjMxMjM', start=int(snap), end=int(snap + length))
         time.sleep(length)
         mplayer.stop()
