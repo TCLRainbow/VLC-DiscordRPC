@@ -31,8 +31,8 @@ details = f"{int(track.bitrate / 1000)}kbps {sample}Hz"
 if length > 0:
     while True:
         snap = time.time()
-        RPC.update(state=details, details=file_name, large_image=extension,
-                   large_text=extension, start=int(snap), end=int(snap + length))
+        RPC.update(state=details, details=file_name, large_image=extension, party_id='ae488379-351d-4a4f-ad32-2b9b01c91657',
+                   large_text=extension, join='MTI4NzM0OjFpMmhuZToxMjMxMjM', start=int(snap), end=int(snap + length))
         time.sleep(length)
         mplayer.stop()
         mplayer.play()
