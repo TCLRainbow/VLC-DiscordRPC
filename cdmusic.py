@@ -13,7 +13,7 @@ mplayer = vlc.MediaPlayer(file)
 print('Updating presence')
 RPC = Presence('757258842328399944')
 RPC.connect()
-print("Now playing: " + file)
+print("Media: " + file)
 mplayer.play()
 file_name = file.split('/')[-1]
 extension = file_name.split('.')[-1]
@@ -38,7 +38,8 @@ if length > 0:
         mplayer.play()
 else:
     while True:
-        RPC.update(details=file_name, large_image=extension, large_text=extension, start=int(time.time()))
+        RPC.update(details=file_name, large_image=extension, large_text=extension, party_id='xq',
+                   party_size=[1, 2**32], join='MTI4NzM0OjFpMmhuZToxMjMxMjM', start=int(time.time()))
         time.sleep(1)
         while mplayer.is_playing():
             time.sleep(0.5)
