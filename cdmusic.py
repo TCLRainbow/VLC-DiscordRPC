@@ -26,6 +26,7 @@ x = int(input())
 if x == 1:
     link = input('Paste YouTube link: ')
     extension = 'youtube'
+    buttons=({'label': 'Play on YouTube', 'url': link},)
     yt = pytube.YouTube(link)
     file_name = yt.title
     length = yt.length
@@ -58,6 +59,7 @@ else:
     bitrate = int(stats.input_bitrate * 8000)
 
     details = f"~{bitrate}kbps {sample}Hz"
+    buttons = None
 
 
 print('Updating presence')
@@ -69,7 +71,7 @@ if length > 0:
     while True:
         snap = time.time()
         RPC.update(state=details, details=file_name, large_image=extension, large_text=extension,
-                   start=int(snap), end=int(snap + length))
+                   start=int(snap), end=int(snap + length), buttons=buttons)
         time.sleep(length)
         mplayer.stop()
         mplayer.play()
