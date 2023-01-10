@@ -1,3 +1,6 @@
+# This project has reached End of Life status.
+Successor: [Trinity](https://github.com/TCLRainbow/Trinity)
+
 # VLC extension that enables Discord RPC
 Based on [mpv-DiscordRPC](https://github.com/yutotakano/mpvcord)
 
